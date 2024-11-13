@@ -1,0 +1,67 @@
+{
+  "candidates": {
+    "personero": [
+      {
+        "code": "01",
+        "name": "Yency Nataly Prada Rocha",
+        "image": "/images/personero_01.jpg"
+      },
+      {
+        "code": "02",
+        "name": "Laura Sofia Gutierrez Forero",
+        "image": "/images/personero_02.jpg"
+      },
+      {
+        "code": "03",
+        "name": "Maria Victoria Liebano Parales",
+        "image": "/images/personero_03.jpg"
+      },
+      {
+        "code": "04",
+        "name": "Otro Fulano",
+        "image": "/images/personero_04.jpg"
+      }
+    ],
+    "contralor": [
+      {
+        "code": "01",
+        "name": "Fulanito de tales y paz",
+        "image": "/images/contralor_01.jpg"
+      },
+      {
+        "code": "02",
+        "name": "Otro Fulano",
+        "image": "/images/contralor_02.jpg"
+      },
+      {
+        "code": "03",
+        "name": "Compa de Santa Lucia",
+        "image": "/images/contralor_03.jpg"
+      }
+    ]
+  },
+  "votes": {
+    "personero": {
+      "01": 1,
+      "02": 1
+    },
+    "contralor": {
+      "01": 1,
+      "02": 1
+    }
+  },
+  "voters": {
+    "reference": {
+      "personero": true,
+      "contralor": true
+    },
+    "diana": {
+      "personero": true,
+      "contralor": true
+    }
+  },
+  "comisios": [],
+  "resetHistory": [],
+  "authorizedVoters": [],
+  "votedIds": []
+}

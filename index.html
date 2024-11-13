@@ -1,121 +1,111 @@
 <!DOCTYPE html>
-<html lang="pt">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urna Electrónica</title>
+    <title>Sistema de Votación</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/tela.css">
+    <script defer src="/models/face-api.min.js"></script>
 </head>
-
-<body onload="comecarVotacao()">
-    <h1 ondblclick = "resultados()">Urna Electrónica</h1>
-    <div class="urna">
-        <div id="fpersonero" class="candidatos">
-            <h3>Candidatos Personero</h3>
-            <div class="area--width">
-                <div class="area--cabeca">
-                    <div class="cabeca">
-                        <img src="images/cp1.png" alt="Candidato">
-                        <div class="dados">Codigo: 01</div>
-                        <div class="dados">YENCY NATALY PRADA ROCHA</div>
-                    </div>
-                </div>
-                <div class="area--cabeca">
-                    <div class="cabeca">
-                        <img src="images/cp2.jpg" alt="Candidato">
-                        <div class="dados">Codigo: 02</div>
-                        <div class="dados">LAURA GÓNGORA LÓPEZ</div>
-                    </div>
-                </div>
-                <div class="area--cabeca">
-                    <div class="cabeca">
-                        <img src="images/cp3.jpg" alt="Candidato">
-                        <div class="dados">Codigo: 03</div>
-                        <div class="dados">BIBIANA SOFIA RADA MONROY</div>
-                    </div>
-                </div>
-            </div>
-
+<body>
+    <div id="face-verification" style="display: block; text-align: center;">
+        <h2>Verificación Facial</h2>
+        <div style="position: relative; width: 640px; height: 480px; margin: 0 auto;">
+            <video id="video" width="640" height="480" autoplay muted playsinline></video>
+            <canvas id="overlay" style="position: absolute; top: 0; left: 0;"></canvas>
         </div>
-        
-
-        <div class="tela">
-            <div id="personero"  class="tela--superior">
-                <div class="superior--left">
-                    <div class="d-1">
-                        <span>SU VOTO PARA</span>
-                    </div>
-                    <div class="d-2">
-                        <span>Personero</span>
-                    </div>
-                    <div class="d-3">
-                        <div class="quadrado pisca"></div>
-                        <div class="quadrado"></div>
-                    </div>
-                    <div class="d-4">
-                        <div class="mensagem"></div>                        
-                    </div>
-                </div>
-                <div class="superior--right">
-                    <div class="candidato">
-                        <img src="images/logopersonero.png" alt="" />
-                        <div class="cargo">
-                            <p>Personero</p>
-                        </div>
-                    </div>
-
-                    
-
-                </div>
-            </div>
-            
-            <div class="rodape">
-                Advertencia: <br/> CONFIRMAR para CONFIRMAR este voto
-                <br/> CORRIGIR para REINICIAR este voto</div>
-        </div>
-        <div class="area--teclado">
-            <div class="logo">
-                <img ondblclick = "clean_data()" src="images/escudo.gif" alt="San Juan Bosco">
-                <h2>Elecciones San Juan Bosco 2024</h2>
-            </div>
-            <div class="teclado">
-                <div class="teclado--linha">
-                    <div class="teclado--botao" onclick="clicou('1')">1</div>
-                    <div class="teclado--botao" onclick="clicou('2')">2</div>
-                    <div class="teclado--botao" onclick="clicou('3')">3</div>
-                </div>
-                <div class="teclado--linha">
-                    <div class="teclado--botao" onclick="clicou('4')">4</div>
-                    <div class="teclado--botao" onclick="clicou('5')">5</div>
-                    <div class="teclado--botao" onclick="clicou('6')">6</div>
-                </div>
-                <div class="teclado--linha">
-                    <div class="teclado--botao" onclick="clicou('7')">7</div>
-                    <div class="teclado--botao" onclick="clicou('8')">8</div>
-                    <div class="teclado--botao" onclick="clicou('9')">9</div>
-                </div>
-                <div class="teclado--linha">
-                    <div class="teclado--botao" onclick="clicou('0')">0</div>
-                </div>
-                <div class="teclado--linha">
-                    <div class="teclado--botao btn-branco" onclick="votoenblanco()">Blanco</div>
-                    <div class="teclado--botao btn-corrige" onclick="corrige()">Corrigir</div>
-                    <div class="teclado--botao btn-confirme" onclick="confirme()">Confirmar</div>
-                </div>
-            </div>
-        </div>
-
+        <div id="status" style="margin-top: 20px; font-size: 18px;">Iniciando verificación facial...</div>
     </div>
 
-    <script src="js/util.js"></script>
+    <div id="voting-system" style="display: none;">
+        <h1>Sistema de Votación</h1>
+        <div class="urna">
+            <div class="candidatos">
+                <div id="personero-candidates">
+                    <h3>Candidatos Personero</h3>
+                    <div class="area--width">
+                        <!-- Candidates will be dynamically loaded here -->
+                    </div>
+                </div>
+                
+                <div id="contralor-candidates" style="display: none;">
+                    <h3>Candidatos Contralor</h3>
+                    <div class="area--width">
+                        <!-- Candidates will be dynamically loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="tela">
+                <div class="tela--superior">
+                    <div class="superior--left">
+                        <div class="d-1">
+                            <span>SU VOTO PARA</span>
+                        </div>
+                        <div class="d-2">
+                            <span>Cargo</span>
+                        </div>
+                        <div class="d-3">
+                            <div class="quadrado pisca"></div>
+                            <div class="quadrado"></div>
+                        </div>
+                        <div class="d-4">
+                            <div class="mensagem"></div>
+                        </div>
+                    </div>
+                    <div class="superior--right">
+                        <div class="candidato">
+                            <!-- Candidate image will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rodape">
+                    <div>
+                        BLANCO para VOTO EN BLANCO<br/>
+                        CORRIGE para CORREGIR<br/>
+                        CONFIRMA para CONFIRMAR
+                    </div>
+                </div>
+            </div>
+
+            <div class="area--teclado">
+                <div class="logo">
+                    <img src="images/escudo.gif" alt="San Juan Bosco">
+                    <h2>Elecciones San Juan Bosco 2024</h2>
+                </div>
+                <div class="teclado">
+                    <div class="teclado--linha">
+                        <div class="teclado--botao" onclick="clicou('1')">1</div>
+                        <div class="teclado--botao" onclick="clicou('2')">2</div>
+                        <div class="teclado--botao" onclick="clicou('3')">3</div>
+                    </div>
+                    <div class="teclado--linha">
+                        <div class="teclado--botao" onclick="clicou('4')">4</div>
+                        <div class="teclado--botao" onclick="clicou('5')">5</div>
+                        <div class="teclado--botao" onclick="clicou('6')">6</div>
+                    </div>
+                    <div class="teclado--linha">
+                        <div class="teclado--botao" onclick="clicou('7')">7</div>
+                        <div class="teclado--botao" onclick="clicou('8')">8</div>
+                        <div class="teclado--botao" onclick="clicou('9')">9</div>
+                    </div>
+                    <div class="teclado--linha">
+                        <div class="teclado--botao" onclick="clicou('0')">0</div>
+                    </div>
+                    <div class="teclado--linha">
+                        <div class="teclado--botao btn-branco" onclick="branco()">BLANCO</div>
+                        <div class="teclado--botao btn-corrige" onclick="corrige()">CORRIGE</div>
+                        <div class="teclado--botao btn-confirme" onclick="confirme()">CONFIRMA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/script.js"></script>
+    <script src="js/face-verification.js"></script>
 </body>
-
-</html>
-
-</html>
-
 </html>
