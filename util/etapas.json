@@ -1,0 +1,60 @@
+{
+    "0": {
+        "titulo": "personero",
+        "numeros": 2,
+        "candidatos": {
+            "01": {
+                "nome": "Adalberto Da Costa Junior",
+                "partido": "UNITA",
+                "foto": "admin.jpg"
+            },
+            "02": {
+                "nome": "João Manuel G Lourenço",
+                "partido": "MPLA",
+                "foto": "cv2.jpg"
+            },
+            "03": {
+                "nome": "Abel Chivucuvuco",
+                "partido": "INDEPENDENTE",
+                "foto": "cv3.jpg"
+            }
+
+        }
+    },
+    "1": {
+        "titulo": "contralor",
+        "numeros": 4,
+        "candidatos": {
+            "0001": {
+                "nome": "Fulano Unita",
+                "partido": "UNITA",
+                "foto": "cp3.jpg",
+                "vice": {
+                    "nome": "Zicrano Unita",
+                    "partido": "UNITA",
+                    "foto": "v3.jpg"
+                }
+            },
+            "0002": {
+                "nome": "Fulano Mpla",
+                "partido": "MPLA",
+                "foto": "cp2.jpg",
+                "vice": {
+                    "nome": "Zicrano Mpla",
+                    "partido": "MPLA",
+                    "foto": "v2.jpg"
+                }
+            },
+            "0003": {
+                "nome": "Fulano Independente",
+                "partido": "INDEPENDENTE",
+                "foto": "cp1.jpg",
+                "vice": {
+                    "nome": "Zicrano Independente",
+                    "partido": "INDEPENDENTE",
+                    "foto": "v1.jpg"
+                }
+            }
+        }
+    }
+}

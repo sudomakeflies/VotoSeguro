@@ -1,0 +1,126 @@
+body {
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+.urna {
+    display: flex;
+    justify-content: center;
+}
+
+.candidatos {
+    background-color: #E8F6FF;
+    width: 250px;
+}
+
+.candidatos h3 {
+    text-align: center;
+    text-transform: uppercase;
+    color: #4a4949;
+}
+
+.area--width {
+    transition: all ease 0.3s;
+}
+
+.area--cabeca {
+    background-color: #638185;
+    border-style: outset;
+    margin: 10px;
+    background-position: center;
+    background-size: cover;
+    height: inherit;
+}
+
+.cabeca {
+    cursor: pointer;
+    background-color: #E8F6FF;
+    background-position: center;
+    background-size: cover;
+}
+
+.cabeca img {
+    max-width: 90px;
+    background-color: #E8F6FF;
+    margin-left: 90px;
+}
+
+.dados {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-weight: bold;
+    color: #4a4949;
+}
+
+.area--teclado {
+    width: 320px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #E8F6FF;
+}
+
+.logo img {
+    max-width: 80px;
+    background-color: #E8F6FF;
+}
+
+.logo h2 {
+    margin-left: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #4a4949;
+}
+
+.teclado {
+    background-color: #1E1D1D;
+    color: #fff;
+    border-style: outset;
+}
+
+.teclado--linha {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.teclado--botao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.45rem 1.5rem 0.25rem 0.5rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    color: whitesmoke;
+    background-color: #000;
+    box-shadow: 4px -4px 1px #343333;
+    width: 50px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.btn-branco {
+    color: #000;
+    background-color: #fff;
+    box-shadow: 4px -4px 1px #aaa6a6b5;
+}
+
+.btn-corrige {
+    background-color: #c25208;
+    box-shadow: 4px -4px 1px #c25c0882;
+}
+
+.btn-confirme {
+    background-color: #06582d;
+    box-shadow: 4px -4px 1px #06582d85;
+}
